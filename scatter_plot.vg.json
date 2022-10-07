@@ -1,0 +1,77 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": ["Number of Years Since Founded versus Number of Student Enrolment", "of Top Universities in the United Kingdom in Year 2022"],
+    "width": 600, "height": 400,
+    "data": {"url": "https://raw.githubusercontent.com/xlam0004/Data-Visualisation-2/main/data/uk_universities.csv"},
+    
+    "params":[
+      {
+        "name": "state_highlight",
+        "select": {"type": "point", "fields":["State"]},
+        "bind": "legend"
+      },
+
+      {
+        "name": "Year_above",
+        "value": 50,
+        "bind": {"input": "range", "min": 100, "max": 1000, "step": 100, "name": "Years since founded:"}
+      }
+    ],
+    
+    "transform": [
+      {"calculate": "'https://www.google.com/search?q=' + datum.Website", "as": "url"},
+      {"filter": "datum.Number_of_years < Year_above"}
+    ],
+
+    "mark": "point",
+
+    "encoding": {
+      "x": {
+        "field": "Student_enrollment", 
+        "type": "quantitative",
+        "title": "Number of Student Enrolment"
+      },
+
+      "y": {
+        "field": "Number_of_years", 
+        "type": "quantitative",
+        "title": "Number of Years Since Founded",
+        "axis": {"tickCount": 10}
+      },
+      
+      "color": {
+        "field": "State", 
+        "type": "nominal",
+        "title": "UK States",
+        "scale":{
+          "domain": ["England", "Northern Ireland", "Scotland", "Wales"],
+          "range": ["#6baed6", "#e41a1c", "#984ea3", "#ff7f00"]
+        }
+      },
+      
+      "opacity":{
+        "condition": {"param": "state_highlight", "value": 0.8}, "value": 0.2
+      },
+
+      "size":{
+        "field": "International_students",
+        "type": "quantitative",
+        "title": ["Percentage of", "International Students (%)"],
+        "scale":{
+          "type": "threshold",
+          "domain": [10, 20, 30, 40, 50],
+          "range": [20, 40, 80, 140, 220, 320]
+        }
+      },
+
+      "tooltip": [
+        {"field": "University_name", "type": "nominal", "title": "University"},
+        {"field": "Number_of_years", "type": "quantitative", "format": ",", "title": "Number of years"},
+        {"field": "Student_enrollment", "type": "quantitative", "format": ",", "title": "Student Enrolment"},
+        {"field": "International_students_percent", "type": "quantitative", "format": ".0%", "title":"International Student"}
+      ],
+
+      "href": {"field": "url", "type": "nominal"}
+    }
+}
+  

@@ -1,0 +1,160 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 530,
+    "height": 650,
+    "title": "Average Undergraduate Fees of Top Universities in United Kingdom in Year 2022",
+    "projection": {"type": "transverseMercator"},
+    "layer":
+    [
+        {
+            "data": 
+            {
+                "url": "https://martinjc.github.io/UK-GeoJSON/json/ni/topo_lgd.json",
+                "format":
+                {
+                    "type": "topojson", 
+                    "feature": "lgd"
+                }
+            },
+            "mark":
+            {
+                "type": "geoshape",
+                "fill": "lightgrey",
+                "stroke": null,
+                "strokeWidth": 0.801
+            }
+        },
+        
+        {
+            "data": 
+            {
+                "url": "https://martinjc.github.io/UK-GeoJSON/json/sco/topo_eer.json",
+                "format":
+                {
+                    "type": "topojson", 
+                    "feature": "eer"
+                }
+            },
+            "mark":
+            {
+                "type": "geoshape",
+                "fill": "lightgrey",
+                "stroke":null,
+                "strokeWidth": 0.8
+                
+            }
+        },
+
+        {
+            "data": 
+            {
+                "url": "https://martinjc.github.io/UK-GeoJSON/json/wal/topo_eer.json",
+                "format":
+                {
+                    "type": "topojson", 
+                    "feature": "eer"
+                }
+            },
+            "mark":
+            {
+                "type": "geoshape",
+                "fill": "lightgrey",
+                "stroke": null,
+                "strokeWidth": 0.8
+            }
+        },
+
+        {
+            "data": 
+            {
+                "url": "https://martinjc.github.io/UK-GeoJSON/json/eng/topo_eer.json",
+                "format":
+                {
+                    "type": "topojson", 
+                    "feature": "eer"
+                }
+            },
+            "mark":
+            {
+                "type": "geoshape",
+                "fill": "#E7DEBE",
+                "stroke": "white",
+                "strokeWidth": 0.8
+            }
+        },
+
+        {
+            "data": {"url": "https://raw.githubusercontent.com/xlam0004/Homework-Week-9/main/data/uk_states.csv"},
+            "mark": 
+            {
+                "type": "text",
+                "dy": -10,
+                "fontWeight": "bold",
+                "fontSize": 12
+            },
+            "encoding": 
+            {
+                "longitude":{"field": "Longitude", "type": "quantitative"},
+                "latitude":{"field": "Latitude", "type": "quantitative"},
+                "text": {"field": "Region", "type": "nominal"}
+            }
+        },
+
+        {
+            "data": {"url": "https://raw.githubusercontent.com/xlam0004/Homework-Week-9/main/data/england_region.csv"},
+            "mark": 
+            {
+                "type": "text",
+                "dy": -10,
+                "fontSize": 9,
+                "fontWeight":200,
+                "fontStyle": "italic"
+            },
+            "encoding": 
+            {
+                "longitude":{"field": "Longitude", "type": "quantitative"},
+                "latitude":{"field": "Latitude", "type": "quantitative"},
+                "text": {"field": "Region", "type": "nominal"}
+            }
+        },
+
+        {
+            "data": {"url": "https://raw.githubusercontent.com/xlam0004/Homework-Week-9/main/data/uk_universities_edited.csv"},
+            "mark":
+            {
+                "type": "circle", 
+                "tooltip": {"content": "data"}
+            },
+            "encoding":
+            {
+                "longitude":{"field": "Longitude", "type": "quantitative"},
+                "latitude":{"field": "Latitude", "type": "quantitative"},
+                "size":
+                {
+                    "field": "Total_years",
+                    "type": "quantitative",
+                    "title": "Number of Years Since Founded",
+                    "scale": {"domain": [5,950]}
+                },
+                "color":
+                {
+                    "field": "UG_average_fees_(in_pounds)",
+                    "type": "quantitative",
+                    "title": ["Average Undergraduate Fees", "(in pounds)"],
+                    "scale": 
+                    {
+                        "type": "threshold",
+                        "domain": [10000, 12500, 15000, 20000],
+                        "range": ["#fdbe85","#fd8d3c","#e6550d","#a63603", "#7E2811"]
+                    }
+                },
+                "tooltip":
+                [
+                    {"field": "University_name", "type": "nominal", "title": "University Name"},
+                    {"field": "Total_years", "type": "quantitative", "title": "Number of years"},
+                    {"field": "UG_average_fees_(in_pounds)", "type": "quantitative", "title": "Average undergraduate fees (in pounds)"}
+                ]
+            }
+        }
+    ]
+}
