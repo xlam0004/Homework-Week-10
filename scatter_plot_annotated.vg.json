@@ -1,29 +1,21 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": ["Number of Years Since Founded versus Number of Student Enrolment", "of Top Universities in the United Kingdom in Year 2022"],
-    "width": 600, "height": 350,
-    "data": {"url": "https://raw.githubusercontent.com/xlam0004/Data-Visualisation-2/main/data/uk_universities.csv"},
+    "width": 500, "height": 380,
+    "data": {"url": "https://raw.githubusercontent.com/xlam0004/Homework-Week-10/main/data/uk_universities.csv"},
     
     "params":[
     {
         "name": "Year_above",
         "value": 50,
         "bind": {"input": "range", "min": 100, "max": 1000, "step": 100, "name": "Years since founded:"}
-    },
-    {
-        "name": "state_select",
-        "bind": {"input": "select",
-                 "options": [null, "England", "Northern Ireland", "Scotland", "Wales"], 
-                 "labels": ["Show All", "England", "Northern Ireland", "Scotland", "Wales"],
-                 "name": "UK States Selection: "}
     }
 
     ],
     
     "transform": [
       {"calculate": "'https://www.google.com/search?q=' + datum.Website", "as": "url"},
-      {"filter": "datum.Number_of_years < Year_above"},
-      {"filter":"state_select == null || datum.State == state_select"}
+      {"filter": "datum.Number_of_years < Year_above"}
 
     ],
 
@@ -58,17 +50,8 @@
             }
           },
 
-          "color": {
-            "field": "State", 
-            "type": "nominal",
-            "title": "UK States",
-            "scale":{
-              "domain": ["England", "Northern Ireland", "Scotland", "Wales"],
-              "range": ["#6baed6", "#e41a1c", "#984ea3", "#ff7f00"]
-            }
-          },
-
           "tooltip": [
+            {"field": "Region", "type": "nominal", "title": "Region"}, 
             {"field": "University_name", "type": "nominal", "title": "University Name"},
             {"field": "Number_of_years", "type": "quantitative", "format": ",", "title": "Number of years"},
             {"field": "Student_enrollment", "type": "quantitative", "format": ",", "title": "Student Enrolment"},
@@ -92,6 +75,7 @@
             "color":{"value":"black"},
             "opacity":{"condition":{"test":"datum.University_name == 'University of Oxford'|| datum.University_name == 'Royal Agricultural University'", "value": 1}, "value": 0},
             "tooltip": [
+                {"field": "Region", "type": "nominal", "title": "Region"}, 
                 {"field": "University_name", "type": "nominal", "title": "University Name"},
                 {"field": "Number_of_years", "type": "quantitative", "format": ",", "title": "Number of years"},
                 {"field": "Student_enrollment", "type": "quantitative", "format": ",", "title": "Student Enrolment"},

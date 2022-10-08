@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 530,
-    "height": 650,
+    "width": 500,
+    "height": 600,
     "title": "Average Undergraduate Fees of Top Universities in United Kingdom in Year 2022",
     "projection": {"type": "transverseMercator"},
     "layer":
@@ -77,7 +77,7 @@
             "mark":
             {
                 "type": "geoshape",
-                "fill": "#E7DEBE",
+                "fill": "lightgrey",
                 "stroke": "white",
                 "strokeWidth": 0.8
             }
@@ -100,23 +100,6 @@
             }
         },
 
-        {
-            "data": {"url": "https://raw.githubusercontent.com/xlam0004/Homework-Week-9/main/data/england_region.csv"},
-            "mark": 
-            {
-                "type": "text",
-                "dy": -10,
-                "fontSize": 9,
-                "fontWeight":200,
-                "fontStyle": "italic"
-            },
-            "encoding": 
-            {
-                "longitude":{"field": "Longitude", "type": "quantitative"},
-                "latitude":{"field": "Latitude", "type": "quantitative"},
-                "text": {"field": "Region", "type": "nominal"}
-            }
-        },
 
         {
             "data": {"url": "https://raw.githubusercontent.com/xlam0004/Homework-Week-9/main/data/uk_universities_edited.csv"},
@@ -133,14 +116,14 @@
                 {
                     "field": "Total_years",
                     "type": "quantitative",
-                    "title": "Number of Years Since Founded",
+                    "title": ["Number of Years", "Since Founded"],
                     "scale": {"domain": [5,950]}
                 },
                 "color":
                 {
                     "field": "UG_average_fees_(in_pounds)",
                     "type": "quantitative",
-                    "title": ["Average Undergraduate Fees", "(in pounds)"],
+                    "title": ["Average Undergraduate", "Fees (in pounds)"],
                     "scale": 
                     {
                         "type": "threshold",

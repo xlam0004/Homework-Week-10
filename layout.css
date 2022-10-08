@@ -1,0 +1,24 @@
+.pure-g{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.pure-u-1-2{
+    height:fit-content
+}
+
+.pure-u-1{
+    text-align: center;
+    height: 5vw;
+}
+
+#text_div p{
+    text-align: justify;
+    font-size: small;
+}
+
+#note{
+    font-style: italic;
+    font-size: smaller;
+}
