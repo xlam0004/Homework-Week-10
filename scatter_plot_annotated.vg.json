@@ -2,6 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": ["Number of Years Since Founded versus Number of Student Enrolment", "of Top Universities in the United Kingdom in Year 2022"],
     "width": 500, "height": 380,
+    "padding":{"left": 20},
     "data": {"url": "https://raw.githubusercontent.com/xlam0004/Homework-Week-10/main/data/uk_universities.csv"},
     
     "params":[
