@@ -1,24 +1,12 @@
-.pure-g{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-
-.pure-u-1-2{
-    height:fit-content
-}
-
-.pure-u-1{
+#main .header{
     text-align: center;
-    height: 5vw;
+}
+
+.pure-u-2 {
+    margin: 0 0.5rem;
 }
 
 #text_div p{
     text-align: justify;
     font-size: small;
-}
-
-#note{
-    font-style: italic;
-    font-size: smaller;
 }
