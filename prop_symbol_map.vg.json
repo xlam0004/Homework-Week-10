@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 100,
+    "width": 500,
     "height": 600,
     "title": "Average Undergraduate Fees of Top Universities in United Kingdom in Year 2022",
     "projection": {"type": "transverseMercator"},
